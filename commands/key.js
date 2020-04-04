@@ -14,12 +14,14 @@ const key = {
       message: 'Enter API Key '.green + 'https://nomics.com', 
       validate: isRequired
     }]);
+
     const key = keyManager.setKey(input.key);
+    
     if(key){
       console.log('API Key Set'.blue)
     }
   },
-  async show(){
+  show(){
    try {
      const key = keyManager.getKey();
      console.log(`Current API Key: ${key.italic.yellow}`);
@@ -28,7 +30,7 @@ const key = {
      console.error(error.message)
    }
   },
-  async remove(){
+  remove(){
     try {
       keyManager.deleteKey();
       console.log('Key Removed'.blue);
