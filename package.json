@@ -1,0 +1,27 @@
+{
+  "name": "coindex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": "./bin/coindex.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyberspacedk/NodeJS_CLI_Crypto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cyberspacedk/NodeJS_CLI_Crypto/issues"
+  },
+  "homepage": "https://github.com/cyberspacedk/NodeJS_CLI_Crypto#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "colors": "^1.4.0",
+    "commander": "^5.0.0",
+    "configstore": "^5.0.1",
+    "inquirer": "^7.1.0"
+  }
+}
