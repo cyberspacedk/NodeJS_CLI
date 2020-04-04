@@ -31,7 +31,7 @@ const key = {
   async remove(){
     try {
       keyManager.deleteKey();
-      console.log('Key Removed');
+      console.log('Key Removed'.blue);
       return;
     } catch (error) {
       console.error(error.message)
