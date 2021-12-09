@@ -27,7 +27,19 @@ export const saveKeyValue = async (key, value) => {
 
   data[key] = value;
   await promises.writeFile(FILE_PATH, JSON.stringify(data));
+}
 
+export const saveCIty = async (city) => {
+  if (!city?.trim()?.length) {
+    printError('Incorrect city');
+    return;
+  }
+  try {
+    await saveKeyValue(TOKEN_DICTIONARY.city, city);
+    printSuccess('OK. Start searching ...');
+  } catch (err) {
+    printError(err.message)
+  }
 }
 
 export const saveToken = async (token) => {

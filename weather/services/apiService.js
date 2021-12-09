@@ -1,14 +1,18 @@
 import axios from 'axios';
-import { printError } from './logService.js';
+import { printError, printWeather } from './logService.js';
 import { getKeyValue, TOKEN_DICTIONARY } from './storageService.js'
 
 
 
-export const getWeather = async (city) => {
-  const token = await getKeyValue(TOKEN_DICTIONARY.token);
+export const getWeather = async () => {
+  const token = process.env.TOKEN ?? await getKeyValue(TOKEN_DICTIONARY.token);
+  const city = process.env.CITY ?? await getKeyValue(TOKEN_DICTIONARY.city);
 
-  if (!token) {
+  if (!token || !city) {
     throw new Error('Empty token. Set token by enter: -t [YOUR_TOKEN]')
+  }
+  if (!city) {
+    throw new Error('Empty city. Set token by enter: -c [CITY]')
   }
 
   const response = await axios.get('https://api.openweathermap.org/data/2.5/weather', {
@@ -21,4 +25,18 @@ export const getWeather = async (city) => {
   });
 
   return response.data
+}
+
+
+export const getForecast = async () => {
+  try {
+    const weather = await getWeather();
+    printWeather(weather);
+  } catch (err) {
+    switch (err?.response?.status) {
+      case 404: printError('Invalid city'); break;
+      case 401: printError('Invalid token'); break;
+      default: printError(err.message)
+    }
+  }
 }
